@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>실습08_이메일 폼_구현</title>
+</head>
+<body>
+    <h2>실습08_이메일 폼_ 구현</h2>
+    <p>이메일 폼양식과 contact.php문서를 연결하여 서버와 데이터 통신하기</p>
+    
+    <form name="contact" method="post" action="contact_me1.php">
+        <fieldset>
+            <legend>Contact Us</legend>
+            <div class="field">
+                <label for="subject"></label>
+                <input type="text" name="subject" id="subject">
+            </div>
+            
+            <div class="field">
+                <label for="name"></label>
+                <input type="text" name="name" id="name">
+            </div>
+            
+            <div class="field">
+                <label for="email"></label>
+                <input type="email" placeholder="id@domain.com" name="email" id="email">
+            </div>
+            
+            <div class="field">
+                <label for="message"></label>
+                <textarea name="message" id="message" rows="5"></textarea>
+            </div>
+            
+<!--            보내기-->
+            <ul>
+                <li><input type="submit" value="보내기"></li>
+            </ul>
+            
+        </fieldset>
+    </form>
+    
+    
+</body>
+</html>

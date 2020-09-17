@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>모나미 랜딩페이지</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        ol,
+        li,
+        ul {
+            list-style: none;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: "맑은 고딕", arial, sans-serif;
+            font-size: 12px;
+            color: #333;
+        }
+
+        header {
+            width: 100%;
+            height: 88px;
+            position: fixed;
+            background-color:#fff;
+            z-index: 9999;
+        }
+
+        /*        #header_top > h1{width:1200px;margin:0px auto;padding-top:20px;}*/
+        #header_top>h1 {
+/*            text-indent: 16%;*/
+/*            padding-top: 20px;*/
+            position:fixed;
+            top:20px;
+            left:28%;
+        }
+
+        header img {
+            width: 200px;
+        }
+
+        nav {
+            position: absolute;
+            top: 15px;
+            width:1200px;
+            left:28%;
+        }
+        
+        section{
+            transform:translateY(88px);
+        }
+
+        .gnb {
+            width: 60%;
+            height: 58px;
+            margin: 0px auto;
+        }
+
+        .gnb>li {
+            float: left;
+            padding: 0px 28px;
+            text-align: center;
+            line-height: 58px;
+        }
+
+        .gnb>li>a {
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .gnb>li>a:hover {
+            border-bottom: 1px solid #333;
+        }
+        #cont{
+            width:100%;
+            text-align: center;
+        }
+        
+        #cont > #visual{
+            width:100%;
+        }
+        
+        #visual > img{
+            width:100%;
+        }
+
+        #stat{
+            margin-top:120px;
+            cursor: pointer;
+        }
+        
+        #craft{
+            margin-top:120px;
+        }
+        
+        #video{
+            width:100%;
+            margin-top: 120px;
+        }
+        video{
+            width:100%;
+        }
+        
+        fieldset{
+            border:none;
+            margin-top:120px;
+        }
+        legend{
+            font-size:50px;
+            font-weight: bold;
+            line-height: 100px;
+        }
+        
+        .field{
+            padding:3px;
+            font-size: 20px;
+            color:#747474;
+        }
+        
+        input[placeholder]{
+            font-size:15px;
+            text-indent: 10px;
+        }
+        
+        input,textarea{
+            background-color:#f4f4f4;
+            border:none;
+            padding:5px 5px;
+        }
+        
+        .field > textarea{
+            width:300px;
+        }
+        
+        input[type=submit]{
+            padding:10px 20px;
+            font-size: 18px;
+            background-color:#333;
+            border:1px solid #333;
+            color:#fff;
+            border-radius: 15px;
+            cursor: pointer;
+            transform: translateY(20px);
+        }
+        
+        input[type=submit]:hover{
+            background-color:#fff;
+            border:1px solid #333;
+            color:#333;
+/*            font-weight: bold;*/
+        }
+        
+        footer{
+            width:100%;
+            margin-bottom: 20px;
+/*            height:80px;*/
+/*            border-top:1px solid #333;*/
+/*            margin-top:120px;*/
+        }
+        
+        footer::before{
+            display: block;
+            content: "";
+            clear: both;
+            height:110px;
+        }
+        
+        footer address{
+            font-style: normal;
+            text-align: center;
+            line-height: 80px;
+        }
+        footer > a{
+            background-color:#000;
+            color:#fff;
+            font-size:20px;
+            padding:12px 10px;
+            position:fixed;
+            bottom:90px;
+            right:50px;
+            border-radius: 7px;
+        }
+        
+        
+        .status{
+            background-color:#ffff00;
+            color:#f00;
+            position:fixed;
+            right:30px;
+            top:100px;
+            z-index: 7777;
+        }
+        
+        .on{border-bottom: 1px solid #333;}
+    </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('footer a').hide();
+        
+        //내비게이션 메뉴 클릭시 해당하는 컨텐츠 상단 top:58px 위치에 올라오게 하기
+        $('.gnb > li').on({'click focus':function(){
+            var num = $(this).index()+1;
+            console.log(num);
+            
+            var con = $('section div').eq(num).offset().top; //각 콘텐츠 article에 top위치값을 변수에 저장
+            
+            $('html,body').animate({scrollTop:con-58},500); //각 콘텐츠 스크롤높이 58px까지 상단으로 애니메이션되면서 올라감
+        }
+    
+        });
+        
+        $(window).scroll(function(){
+            var sPos = $(window).scrollTop();
+            
+            if(sPos >= 700){
+                $('footer a').fadeIn();
+            }else{
+                $('footer a').fadeOut();
+            }
+            
+            var h = $('section div').height(); //각 콘텐츠별 높이값을 구하여 변수에 저장한다.
+            
+            if(sPos >= h*1 && sPos < h*2){
+                $('.gnb a').removeClass('on');
+                $('.gnb > li').eq(0).find('a').addClass('on');
+            }else if(sPos >= h*2 && sPos < h*3){
+                $('.gnb a').removeClass('on');
+                $('.gnb > li').eq(1).find('a').addClass('on');
+            }else if(sPos >= h*3 && sPos < h*4){
+                $('.gnb a').removeClass('on');
+                $('.gnb > li').eq(2).find('a').addClass('on');
+            }else if(sPos >= h*4 && sPos < h*5){
+                $('.gnb a').removeClass('on');
+                $('.gnb > li').eq(3).find('a').addClass('on');
+            }else if(sPos >= h*5 && sPos < h*6){
+                $('.gnb a').removeClass('on');
+                $('.gnb > li').eq(4).find('a').addClass('on');
+            }else{
+                $('.gnb a').removeClass('on');
+            }
+            
+            
+            });
+            
+             $('footer a').click(function(){
+                $('body,html').animate({scrollTop:'0px'},300);
+                return false;
+        });
+        
+        
+    });
+    </script>
+</head>
+
+<body>
+    <span class="status"></span>
+
+    <header>
+        <div id="header_top">
+            <h1><a href="index.html" title="메인페이지 바로가기">
+                    <img src="./img/logo.jpg" alt="상단로고">
+                </a></h1>
+            <nav>
+                <ul class="gnb">
+                    <li><a href="#" title="Stationery">Stationery</a></li>
+                    <li><a href="#" title="Craft&Hobby">Carft & Hobby</a></li>
+                    <li><a href="#" title="Video">Video</a></li>
+                    <li><a href="#" title="Contact Us">Contact Us</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <section id="cont">
+        <div id="visual">
+            <img src="./img/main_1.jpg" alt="타이틀이미지">
+        </div>
+
+        <div class="sub_con" id="stat">
+<!--            <img src="./img/main2.jpg" alt="">-->
+            <img src="./img/main2_1.jpg" alt="">
+            <img src="./img/main2_2.jpg" alt="">
+        </div>
+
+        <div class="sub_con" id="craft">
+           
+            <img src="./img/main3.jpg" alt="">
+        </div>
+
+
+        <div class="sub_con" id="video">
+            <video src="./img/monami.mp4" autoplay muted loop></video>
+        </div>
+
+        <div class="sub_con" id="contact">
+<form name="contact" method="post" action="contact_me1.php">
+        <fieldset>
+            <legend>Contact Us</legend>
+            <div class="field">
+                <label for="subject">제목 </label>
+                <input type="text" name="subject" id="subject">
+            </div>
+            
+            <div class="field">
+                <label for="name">성함 </label>
+                <input type="text" name="name" id="name">
+            </div>
+            
+            <div class="field">
+                <label for="email">이메일</label>
+                <input type="email" placeholder="id@domain.com" name="email" id="email">
+            </div>
+            
+            <div class="field">
+                <label for="message"></label>
+                <textarea name="message" id="message" rows="10"></textarea>
+            </div>
+            
+<!--            보내기-->
+            <ul>
+                <li><input type="submit" value="보내기"></li>
+            </ul>
+            
+        </fieldset>
+    </form>
+        </div>
+    </section>
+
+    <footer>
+        <a href="#" title="top">Top</a>
+        <address>Copyright &copy; (주)모나미 All rights Reserved.</address>
+    </footer>
+
+
+
+
+</body>
+
+</html>
